@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
 import psycopg2
-import sys
+from connector import slack_notify_new_order
 
-dsn = "user=rahul-jyala@pluralsight.com password=mzp_d06ecc4a7f5b48dcb2a87cd00bc9c391100009c9fb634d98a230b1e66775cc10 host=a3eldpgfddavjheax03kfzz9m.us-east-1.aws.materialize.cloud port=6875 dbname=arkenstone sslmode=require options=-csearch_path%3Dpublic,rahul"
+dsn = "mocked"
 conn = psycopg2.connect(dsn)
 
 with conn.cursor() as cur:
@@ -13,3 +13,5 @@ with conn.cursor() as cur:
         cur.execute("FETCH ALL c")
         for row in cur:
             print(row)
+
+# slack_notify_new_order(1, 'RahulJyala', 100)
