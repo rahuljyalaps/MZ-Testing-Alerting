@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 
 import psycopg2
+import os
 from connector import slack_notify_new_order
 
-dsn = "mocked"
-conn = psycopg2.connect(dsn)
+conn = psycopg2.connect(os.environ.get('MZ_CONNECTION'))
 
 with conn.cursor() as cur:
     cur.execute("set schema = test_failure")
@@ -14,4 +14,4 @@ with conn.cursor() as cur:
         for row in cur:
             print(row)
 
-# slack_notify_new_order(1, 'RahulJyala', 100)
+# slack_notify(1, 'RahulJyala', 100)
