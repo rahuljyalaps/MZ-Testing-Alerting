@@ -2,7 +2,7 @@
 
 import psycopg2
 import os
-from connector import slack_notify_new_order
+from connector import slack_notify
 
 conn = psycopg2.connect(os.environ.get('MZ_CONNECTION'))
 
