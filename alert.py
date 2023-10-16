@@ -21,13 +21,14 @@ try:
             for row in cur:
                 print("completness: ", row)
                 # Alerting take place from now
-                client.slack_notify("completness", row[2])
+                client.slack_notify("completness", row[1], row[2])
                 client.prom_counter(row[1])
 
 except Exception as e:
     print("Error:", e)
+    sys.exit(0)
 
 finally:
     if conn is not None:
         conn.close()
-        sys.exit(0)
+    sys.exit(0)

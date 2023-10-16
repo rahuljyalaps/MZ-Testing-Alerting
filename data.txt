@@ -1,0 +1,26 @@
+## Schemas
+SHOW MATERIALIZED VIEWS
+select * from users
+select * from organizations
+select * from user_organization_view
+
+select * from test_failure.completness_user_organization_view
+
+
+## Data Set 1
+insert into users values (30, 10, 'random1')
+insert into users values (31, 10, 'random2')
+
+insert into organizations values (10, 'random org')
+
+
+## Data Set 2
+insert into users values (40, 20, 'random3')
+insert into users values (41, 20, 'random4')
+
+insert into organizations values (20, 'random org2')
+
+
+
+##
+select * from mz_catalog.mz_sinks

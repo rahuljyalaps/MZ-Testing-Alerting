@@ -6,10 +6,14 @@ class Connectors:
     def __init__(self):
         self.completness = Gauge("Completness", "Couunter for Completness")
         
-    def slack_notify(self, type, userid):
+    def slack_notify(self, type, isIncrement, userid):
         hook = os.environ.get('WEB_HOOK_SLACK_URL')
-        message = f'User *{userid}* has some data {type} issue*'
-        payload = {'text': message}
+        if isIncrement == 1:
+            message = f'User *{userid}* has some data {type} issue*'
+            payload = {'text': message}
+        else:
+            message = f'User *{userid}* fixed. {type} issue*'
+            payload = {'text': message}
 
         response = requests.post(hook, data=str(payload))
         return response
