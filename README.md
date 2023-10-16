@@ -1,4 +1,6 @@
-# MZ_SUB
+# MZ-Testing-Alerting
+
+https://materialize.com/docs/
 
 install the deps:
 ```pip install -r requirements.txt```
