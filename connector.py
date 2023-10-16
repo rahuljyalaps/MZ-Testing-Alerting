@@ -1,11 +1,23 @@
 import requests
 import os
+from prometheus_client import Gauge
 
-def slack_notify(order_id: int, username: str, amount: float):
-    details = f'[Details](https://admin.mysite.com/core/order/{order_id})'
-    message = f'*{username}* has placed a new order of amount *{amount}*. {details}'
-    payload = {'text': message}
+class Connectors:
+    def __init__(self):
+        self.completness = Gauge("Completness", "Couunter for Completness")
+        
+    def slack_notify(self, type, userid):
+        hook = os.environ.get('WEB_HOOK_SLACK_URL')
+        message = f'User *{userid}* has some data {type} issue*'
+        payload = {'text': message}
 
-    response = requests.post(os.environ.get(
-        'WEB_HOOK_SLACK_URL'), data=str(payload))
-    return response
+        response = requests.post(hook, data=str(payload))
+        return response
+    
+    def prom_counter(self, isIncrement):
+        if isIncrement == 1:
+            self.completness.inc()
+            print(self.completness.collect())
+        else: 
+            self.completness.dec()
+            print(self.completness.collect())
