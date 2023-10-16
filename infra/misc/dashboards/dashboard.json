@@ -55,7 +55,7 @@
         "x": 0,
         "y": 0
       },
-      "id": 18,
+      "id": 20,
       "options": {
         "orientation": "auto",
         "reduceOptions": {
@@ -74,12 +74,13 @@
         {
           "exemplar": true,
           "expr": "sql_user_org_mismatch",
+          "instant": true,
           "interval": "",
           "legendFormat": "",
           "refId": "A"
         }
       ],
-      "title": "Data Quality",
+      "title": "User Org Data Correctness ",
       "type": "gauge"
     },
     {
@@ -275,7 +276,7 @@
       "type": "timeseries"
     }
   ],
-  "refresh": "",
+  "refresh": "5s",
   "schemaVersion": 31,
   "style": "dark",
   "tags": [],
@@ -290,5 +291,5 @@
   "timezone": "",
   "title": "Materialize Dashboard",
   "uid": "XxPvy3PVk",
-  "version": 1
+  "version": 2
 }
